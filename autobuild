@@ -4,6 +4,8 @@ set -evx
 
 if [ -x autogen.sh ] ; then
 	NOCONFIGURE=1 ./autogen.sh
+elif [ ! -x configure ] ; then
+	autoreconf -if
 fi
 
 if [ -z "$configure" ] ; then
