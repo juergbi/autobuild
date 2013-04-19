@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -evx
+
+if [ -x autogen.sh ] ; then
+	NOCONFIGURE=1 ./autogen.sh
+fi
+
+./configure "$@"
+make
+make install
