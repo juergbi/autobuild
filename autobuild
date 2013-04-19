@@ -6,6 +6,10 @@ if [ -x autogen.sh ] ; then
 	NOCONFIGURE=1 ./autogen.sh
 fi
 
-./configure "$@"
+if [ -z "$configure" ] ; then
+	configure=./configure
+fi
+
+$configure "$@"
 make
 make install
