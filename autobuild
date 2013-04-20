@@ -1,15 +1,21 @@
 #!/bin/bash
 
-set -evx
+set -e
+
+if [ -n "$NOTPARALLEL" ] ; then
+	export MAKEFLAGS="$MAKEFLAGS -j 1"
+fi
+
+if [ -z "$configure" ] ; then
+	configure=./configure
+fi
+
+set -vx
 
 if [ -x autogen.sh ] ; then
 	NOCONFIGURE=1 ./autogen.sh
 elif [ ! -x configure ] ; then
 	autoreconf -if
-fi
-
-if [ -z "$configure" ] ; then
-	configure=./configure
 fi
 
 $configure "$@"
