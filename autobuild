@@ -20,4 +20,4 @@ fi
 
 $configure "$@"
 make
-make install
+make install -j 1
